@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask import Flask, flash, redirect, render_template, request, session, url_for
+from werkzeug.security import check_password_hash, generate_password_hash
 
 app = Flask(__name__)
 app.secret_key = "secret-key"
@@ -26,6 +26,7 @@ def login():
 
         if username in users and check_password_hash(users.get(username), password):
             flash("Login successfully.")
+            session["username"] = username
             return redirect(url_for("dashboard"))
         else:
             error = "Invalid credentials. Try again."
@@ -35,16 +36,21 @@ def login():
 
 @app.route("/logout")
 def logout():
+    session.pop("username", None)
     return redirect(url_for("home"))
 
 
 @app.route("/dashboard")
 def dashboard():
-    return render_template("dashboard.html")
+    if "username" in session:
+        return render_template("dashboard.html")
+    return redirect(url_for("login"))
 
 
 @app.route("/add_article")
 def add_article():
+    if "username" not in session:
+        return redirect(url_for("login"))
     return render_template("add_article.html")
 
 
