@@ -9,7 +9,7 @@ users = {"admin": generate_password_hash("admin1234")}
 
 @app.route("/")
 def home():
-    return render_template("home.html")
+    return render_template("guest/home.html")
 
 
 @app.route("/article")
@@ -43,15 +43,16 @@ def logout():
 @app.route("/dashboard")
 def dashboard():
     if "username" in session:
-        return render_template("dashboard.html")
+        return render_template("admin/dashboard.html")
     return redirect(url_for("login"))
 
 
-@app.route("/add_article")
+@app.route("/new-article")
 def add_article():
     if "username" not in session:
         return redirect(url_for("login"))
-    return render_template("add_article.html")
+
+    return render_template("admin/add_article.html")
 
 
 if __name__ == "__main__":
