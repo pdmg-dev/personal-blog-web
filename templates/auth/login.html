@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block header %}   
+    <h2>Login</h2>
+    <a href="{{ url_for('home') }}">Back</a>
+{% endblock header %}
+
+{% block content %}
+    <form method="post">
+        <label for="username">Username</label><br>
+        <input type="text" name="username"><br><br>
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="password"><br><br>
+        <button type="submit">Login</button>
+    </form>
+{% endblock content %}

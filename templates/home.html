@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block header %}
+    <h2>Personal Blog</h2>
+    <a href="{{ url_for('login')}}">Login</a>
+{% endblock header %}
+
+{% block content %}
+    <ul>
+        <li>Article 1</li>
+        <li>Article 2</li>
+        <li>Article 3</li>
+    </ul>
+{% endblock content %}
