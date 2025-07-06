@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title%}Login{% endblock title%}
+
 {% block header %}   
     <h2>Login</h2>
     <a href="{{ url_for('home') }}">Back</a>
@@ -7,10 +9,17 @@
 
 {% block content %}
     <form method="post">
+        
+        <br>
         <label for="username">Username</label><br>
         <input type="text" name="username"><br><br>
         <label for="password">Password</label><br>
         <input type="password" name="password" id="password"><br><br>
         <button type="submit">Login</button>
     </form>
+    <br>
+
+    {% if error %}
+        {{ error }}
+    {% endif %}
 {% endblock content %}
