@@ -30,9 +30,19 @@ def login():
     return render_template("auth/login.html", error=error)
 
 
+@app.route("/logout")
+def logout():
+    return redirect(url_for("home"))
+
+
 @app.route("/dashboard")
 def dashboard():
     return render_template("dashboard.html")
+
+
+@app.route("/add_article")
+def add_article():
+    return render_template("add_article.html")
 
 
 if __name__ == "__main__":

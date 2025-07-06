@@ -14,8 +14,17 @@
         </ul>
             {% endif %}
     {% endwith %} 
+
+    <a href="{{ url_for('add_article') }}">Add New Article</a>
+    <div>
+        <a href="{{ url_for('home')}}">Logout</a>
+    </div>
 {% endblock header %}
 
 {% block content %}
-    <p>Welcome to your dashboard!</p>
+    <ul>
+        <li>Article 1</li>
+        <li>Article 2</li>
+        <li>Article 3</li>
+    </ul>
 {% endblock content %}
