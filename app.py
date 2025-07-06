@@ -1,7 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.secret_key = "secret-key"
+
+users = {"admin": generate_password_hash("admin1234")}
 
 
 @app.route("/")
@@ -18,14 +21,14 @@ def article():
 def login():
     error = None
     if request.method == "POST":
-        if (
-            request.form["username"] != "admin"
-            or request.form["password"] != "admin1234"
-        ):
-            error = "Invalid credentials. Try again."
-        else:
+        username = request.form["username"]
+        password = request.form["password"]
+
+        if username in users and check_password_hash(users.get(username), password):
             flash("Login successfully.")
             return redirect(url_for("dashboard"))
+        else:
+            error = "Invalid credentials. Try again."
 
     return render_template("auth/login.html", error=error)
 
