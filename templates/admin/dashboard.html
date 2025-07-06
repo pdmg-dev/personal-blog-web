@@ -5,6 +5,20 @@
 {% block header %}
     <h2>Dashboard</h2>
 
+    <a href="{{ url_for('add_article') }}">Add New Article</a>
+    <div>
+        <a href="{{ url_for('home')}}">Logout</a>
+    </div>
+
+{% endblock header %}
+
+{% block content %}
+    <ul>
+        <li>Article 1</li>
+        <li>Article 2</li>
+        <li>Article 3</li>
+    </ul>
+
     {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
@@ -14,17 +28,5 @@
         </ul>
             {% endif %}
     {% endwith %} 
-
-    <a href="{{ url_for('add_article') }}">Add New Article</a>
-    <div>
-        <a href="{{ url_for('home')}}">Logout</a>
-    </div>
-{% endblock header %}
-
-{% block content %}
-    <ul>
-        <li>Article 1</li>
-        <li>Article 2</li>
-        <li>Article 3</li>
-    </ul>
 {% endblock content %}
+
