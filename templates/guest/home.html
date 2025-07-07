@@ -10,10 +10,11 @@
 {% block content %}
     <ul>
         {% for article in articles %}
-        <div>
-            <li>{{ article.title }}</li>
-            <span>{{ article.date_published }}</span>
-        </div>
+            <li>
+                <a href="/article/{{ article.slug }}">{{ article.title }}</a><br>
+                {{ article.date_published }}
+            </li>
+            <br>
         {% endfor %}
     </ul>
 {% endblock content %}

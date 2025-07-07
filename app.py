@@ -1,10 +1,8 @@
-from datetime import datetime
-
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from storage import save_article
-from utils import get_current_date, list_articles
+from utils import get_articles, get_current_date
 
 app = Flask(__name__)
 app.secret_key = "secret-key"
@@ -15,13 +13,14 @@ users = {"admin": generate_password_hash("admin1234")}
 # Home route (GUEST)
 @app.route("/", methods=["GET", "POST"])
 def home():
-    return render_template("guest/home.html", articles=list_articles())
+    return render_template("guest/home.html", articles=get_articles())
 
 
 # Article route (GUEST)
-@app.route("/article")
-def article():
-    return render_template("article.html")
+@app.route("/article/<slug>")
+def view_article(slug):
+    article = get_articles(slug)
+    return render_template("guest/article.html", article=article)
 
 
 # Login route

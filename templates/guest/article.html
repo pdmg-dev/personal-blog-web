@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title%}{{ article.title }}{% endblock title%}
+
+{% block header %}
+    <h2>Personal Blog</h2>
+    <a href="{{ url_for('home')}}">Back</a>
+{% endblock header %}
+
+{% block content %}
+    <article>
+        <header>{{ article.title }}</header>
+        <div>{{ article.content | safe }}</div>
+    </article>
+{% endblock content %}

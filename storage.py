@@ -1,8 +1,9 @@
 import os
-from config import ARTICLE_DIR
-from utils import generate_filename
 
 import frontmatter
+
+from config import ARTICLE_DIR
+from utils import generate_filename, slugify
 
 
 # Save an article
@@ -13,7 +14,11 @@ def save_article(title, date_published, content):
     filepath = os.path.join(ARTICLE_DIR, generate_filename(title, date_published))
 
     # Create the frontmatter object
-    metadata = {"title": title, "date_published": date_published}
+    metadata = {
+        "title": title,
+        "date_published": date_published,
+        "slug": slugify(title),
+    }
     post = frontmatter.Post(content, **metadata)
 
     # Write the frontmatter and content to the file
