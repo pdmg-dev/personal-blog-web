@@ -2,11 +2,29 @@ import os
 from utils import generate_filename
 
 import frontmatter
+import markdown
 
 ARTICLE_DIR = "articles"
 
 
-# To save the article
+# Load articles
+def list_articles():
+    article_list = []
+    for filename in os.listdir(ARTICLE_DIR):
+        filepath = os.path.join(ARTICLE_DIR, filename)
+        if os.path.isfile(filepath) and filename.endswith(".md"):
+            post = frontmatter.load(filepath)  # Load the metadata and contents
+
+            article = {
+                "title": post["title"],
+                "date_published": post["date_published"],
+                "content": markdown.markdown(post.content),  # Convert md to html
+            }
+            article_list.append(article)
+    return sorted(article_list, key=lambda x: x["date_published"], reverse=True)
+
+
+# Save an article
 def save_article(title, date_published, content):
     os.makedirs(ARTICLE_DIR, exist_ok=True)  # Check if articles folder exists
 

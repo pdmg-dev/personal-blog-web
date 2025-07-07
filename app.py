@@ -4,7 +4,7 @@ from flask import (Flask, flash, redirect, render_template, request, session,
                    url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from storage import save_article
+from storage import list_articles, save_article
 
 app = Flask(__name__)
 app.secret_key = "secret-key"
@@ -13,9 +13,9 @@ users = {"admin": generate_password_hash("admin1234")}
 
 
 # Home route (GUEST)
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def home():
-    return render_template("guest/home.html")
+    return render_template("guest/home.html", articles=list_articles())
 
 
 # Article route (GUEST)
