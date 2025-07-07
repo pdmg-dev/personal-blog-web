@@ -1,10 +1,10 @@
 from datetime import datetime
 
-from flask import (Flask, flash, redirect, render_template, request, session,
-                   url_for)
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from storage import list_articles, save_article
+from storage import save_article
+from utils import get_current_date, list_articles
 
 app = Flask(__name__)
 app.secret_key = "secret-key"
@@ -60,8 +60,7 @@ def dashboard():
 # New Article (ADMIN)
 @app.route("/new-article", methods=["GET", "POST"])
 def add_article():
-    current_date = datetime.now().strftime("%Y-%m-%d")
-
+    current_date = get_current_date()
     if "username" not in session:
         return redirect(url_for("login"))
 

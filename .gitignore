@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+.venv/
+
+# Environment variables and secrets
+.env
+
+# Flask, coverage, and other logs
+instance/
+*.log
+*.pid
+*.sqlite3
+*.db
+
+# Test / coverage reports
+htmlcov/
+.coverage
+.cache
+.noseids
+.pytest_cache/
+
+# MacOS / Windows / Linux system files
+.DS_Store
+Thumbs.db
+
+# VSCode / PyCharm / IDE settings
+.vscode/
+.idea/
+
+# Articles and Markdown content (user content)
+articles/
+*.md
+
+# Compiled files
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
