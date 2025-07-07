@@ -42,7 +42,7 @@ def get_articles(slug=None):
                         "title": post["title"],
                         "date_published": post["date_published"],
                         "slug": post["slug"],
-                        "content": markdown.markdown(post.content),
+                        "content": post.content,
                     }
             else:
                 article_list.append(

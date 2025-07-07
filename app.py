@@ -4,6 +4,8 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from storage import save_article
 from utils import get_articles, get_current_date
 
+from markdown import markdown
+
 app = Flask(__name__)
 app.secret_key = "secret-key"
 
@@ -20,7 +22,8 @@ def home():
 @app.route("/article/<slug>")
 def view_article(slug):
     article = get_articles(slug)
-    return render_template("guest/article.html", article=article)
+    article["content"] = markdown(article["content"])
+    return render_template("guest/view_article.html", article=article)
 
 
 # Login route
@@ -52,7 +55,7 @@ def logout():
 @app.route("/dashboard")
 def dashboard():
     if "username" in session:
-        return render_template("admin/dashboard.html")
+        return render_template("admin/dashboard.html", articles=get_articles())
     return redirect(url_for("login"))
 
 
@@ -73,6 +76,13 @@ def add_article():
         return redirect(url_for("dashboard"))
 
     return render_template("admin/add_article.html", current_date=current_date)
+
+
+# Edit route
+@app.route("/edit-article/<slug>", methods=["GET", "POST"])
+def edit_article(slug):
+    article = get_articles(slug)
+    return render_template("/admin/edit_article.html", article=article)
 
 
 if __name__ == "__main__":

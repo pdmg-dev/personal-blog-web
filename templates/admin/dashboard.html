@@ -14,10 +14,16 @@
 
 {% block content %}
     <ul>
-        <li>Article 1</li>
-        <li>Article 2</li>
-        <li>Article 3</li>
-    </ul>
+        {% for article in articles %}
+            <li>
+                <a href="/article/{{ article.slug }}">{{ article.title }}</a>
+                <a href="/edit-article/{{ article.slug }}">Edit</a>
+                <br>
+                {{ article.date_published }}
+            </li>
+            <br>
+        {% endfor %}
+    </ul>   
 
     {% with messages = get_flashed_messages() %}
         {% if messages %}
