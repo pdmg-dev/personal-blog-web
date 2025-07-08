@@ -4,7 +4,11 @@
 
 {% block header %}
     <h2>Personal Blog</h2>
-    <a href="{{ url_for('home')}}">Back</a>
+    {% if session.username %}
+        <a href="{{ url_for('dashboard') }}">Back</a>
+    {% else %}
+        <a href="{{ url_for('home')}}">Back</a>
+{% endif %}
 {% endblock header %}
 
 {% block content %}
