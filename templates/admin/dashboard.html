@@ -18,6 +18,8 @@
             <li>
                 <a href="/article/{{ article.slug }}">{{ article.title }}</a>
                 <a href="/edit-article/{{ article.slug }}">Edit</a>
+                <a href="/delete-article/{{ article.slug }}" onclick="return confirm('Are you sure you want to delete this article?');">Delete</a>
+   
                 <br>
                 {{ article.date_published }}
             </li>

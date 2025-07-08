@@ -57,3 +57,10 @@ def get_articles(slug=None):
                     }
                 )
     return sorted(article_list, key=lambda x: x["date_published"], reverse=True)
+
+
+def get_article_filepath(slug):
+    for filename in os.listdir(ARTICLE_DIR):
+        if filename.startswith(slug) and filename.endswith(".md"):
+            return os.path.join(ARTICLE_DIR, filename)
+    return None

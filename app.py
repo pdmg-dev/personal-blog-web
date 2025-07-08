@@ -2,9 +2,11 @@ from flask import Flask, flash, redirect, render_template, request, session, url
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from storage import save_article, update_article
-from utils import get_articles, get_current_date
+from utils import get_articles, get_current_date, get_article_filepath
 
 from markdown import markdown
+
+import os
 
 app = Flask(__name__)
 app.secret_key = "secret-key"
@@ -96,6 +98,22 @@ def edit_article(slug):
 
         return redirect(url_for("dashboard"))
     return render_template("/admin/edit_article.html", article=article)
+
+
+# Delete route
+@app.route("/delete-article/<slug>")
+def delete_article(slug):
+    if "username" not in session:
+        return redirect(url_for("login"))
+
+    filepath = get_article_filepath(slug)
+    if os.path.exists(filepath):
+        os.remove(filepath)
+        flash("Article successfully deleted.")
+    else:
+        flash("Article not found.")
+
+    return redirect(url_for("dashboard"))
 
 
 if __name__ == "__main__":
