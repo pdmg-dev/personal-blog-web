@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* Root Variables */
+:root {
+    --font: 'Inter', sans-serif;
+    --bg: #f1f5f9;
+    --card: #ffffff;
+    --text: #1f2937;
+    --primary: #2563eb;
+    --primary-hover: #1e40af;
+    --danger: #dc2626;
+    --radius: 12px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Base Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font);
+    background-color: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+/* Main Container */
+main {
+    background: var(--card);
+    width: 100%;
+    max-width: 720px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+/* Links */
+a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 1rem;
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 1rem 0 0.3rem;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="password"],
+textarea {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: var(--radius);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+/* Buttons */
+button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Cards for article lists */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li.article-card {
+    background: var(--card);
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* Article View */
+article {
+    background: var(--card);
+    padding: 2rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+}
+
+/* Flash Messages */
+.flash {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #facc15;
+    padding: 1rem;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* Footer/Navigation */
+.nav {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 1rem;
+    }
+
+    main {
+        padding: 1.5rem;
+    }
+
+    button {
+        width: 100%;
+    }
+}
