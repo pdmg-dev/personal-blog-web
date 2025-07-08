@@ -3,7 +3,6 @@ import re
 from datetime import datetime
 
 import frontmatter
-import markdown
 
 from config import ARTICLE_DIR
 
@@ -21,6 +20,11 @@ def compact_date(date_str):
 # Generate filename
 def generate_filename(title, date_str):
     return f"{slugify(title)}-{compact_date(date_str)}.md"
+
+
+# Generate filepath
+def generate_filepath(title, date_published):
+    return os.path.join(ARTICLE_DIR, generate_filename(title, date_published))
 
 
 # Get current date and time

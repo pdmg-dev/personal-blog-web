@@ -1,7 +1,7 @@
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from storage import save_article
+from storage import save_article, update_article
 from utils import get_articles, get_current_date
 
 from markdown import markdown
@@ -82,6 +82,19 @@ def add_article():
 @app.route("/edit-article/<slug>", methods=["GET", "POST"])
 def edit_article(slug):
     article = get_articles(slug)
+
+    if "username" not in session:
+        return redirect(url_for("login"))
+
+    if request.method == "POST":
+        title = request.form["title"]
+        date_published = request.form["date_published"]
+        content = request.form["content"]
+
+        update_article(title, date_published, content, slug)
+        flash("Article successfully updated.")
+
+        return redirect(url_for("dashboard"))
     return render_template("/admin/edit_article.html", article=article)
 
 
