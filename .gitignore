@@ -35,7 +35,7 @@ Thumbs.db
 
 # Articles and Markdown content (user content)
 articles/
-*.md
+
 
 # Compiled files
 *.so
